@@ -1,0 +1,36 @@
+{
+    "event1_1": [
+        {"SPRITES": ["WIZARD", "BAKER"]},
+        "Click NEXT to continue.",
+        {"JUMP": "event1_2"}
+    ],
+    "event1_2": [
+        "So... you don't want to be a wizard anymore.",
+        "But you've already spent ages meditating on your vast depths of knowledge, and you can't figure out how to... NOT be a wizard.",
+        "It's all you've ever done, all you've ever learned!",
+        "The conclusion is obvious.",
+        "If you want to be something other than a wizard...",
+        {"GET": "bread"},
+        "You'll have to confront your introverted, bookish instincts you've cultivated and nourished over your centuries as a wizard.",
+        "You'll have to seek knowledge not kept in ancient, magical tomes.",
+        "You'll have to... TALK to people.",
+        {
+            "PROMPT": "What will you do?",
+            "OPTIONS": [
+                {"JUMP": ["Go into town.", null, "loc_town"]},
+                {"GAMEOVER": ["Actually, I'll stay in my tower.", null, "Overcome by despair at the idea of speaking to another person, you hide away in the top of your tower forevermore."]}
+            ]
+        }
+    ],
+    "loc_town": [
+        "The town you normally reside at the outskirts of is a small one, but seeing a slice of its meager population up close still manages to intimidate you.",
+        {
+            "PROMPT": "There's a lot to do in town. It's almost overwhelming. Where are you headed?",
+            "OPTIONS": [
+                {"JUMP": ["Go to the baker's shop.", null, "loc_baker"]},
+                {"JUMP": ["Go talk to the swordsman.", null, "loc_swordsman"]},
+                {"JUMP": ["Go to the other edge of town, into the woods.", null, "loc_witch"]}
+            ]
+        }
+    ]
+}
