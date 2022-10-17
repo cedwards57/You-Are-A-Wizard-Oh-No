@@ -1,17 +1,16 @@
 {
     "event1_1": [
-        {"SPRITES": ["WIZARD", "BAKER"]},
+        {"SPRITES": ["NONE", "NONE"]},
         "Click NEXT to continue.",
         {"JUMP": "event1_2"}
     ],
     "event1_2": [
-        "So... you don't want to be a wizard anymore.",
-        "But you've already spent ages meditating on your vast depths of knowledge, and you can't figure out how to... NOT be a wizard.",
+        "So... you don't want to be a WIZARD anymore.",
+        "But you've already spent ages meditating on your vast depths of knowledge, and you can't figure out how to... NOT be a WIZARD.",
         "It's all you've ever done, all you've ever learned!",
         "The conclusion is obvious.",
-        "If you want to be something other than a wizard...",
-        {"GET": "bread"},
-        "You'll have to confront your introverted, bookish instincts you've cultivated and nourished over your centuries as a wizard.",
+        "If you want to be something other than a WIZARD...",
+        "You'll have to confront your introverted, bookish instincts you've cultivated and nourished over your centuries as a WIZARD.",
         "You'll have to seek knowledge not kept in ancient, magical tomes.",
         "You'll have to... TALK to people.",
         {
@@ -23,14 +22,189 @@
         }
     ],
     "loc_town": [
+        {"SPRITES": ["WIZARD", "NONE"]},
         "The town you normally reside at the outskirts of is a small one, but seeing a slice of its meager population up close still manages to intimidate you.",
         {
-            "PROMPT": "There's a lot to do in town. It's almost overwhelming. Where are you headed?",
+            "PROMPT": "There's a lot to do in town. It's honestly overwhelming, but you're committed to your mission. Where are you headed?",
             "OPTIONS": [
-                {"JUMP": ["Go to the baker's shop.", null, "loc_baker"]},
-                {"JUMP": ["Go talk to the swordsman.", null, "loc_swordsman"]},
+                {"JUMP": ["Go to the BAKER's shop.", null, "loc_baker"]},
+                {"JUMP": ["Go talk to the SWORDSMAN.", null, "loc_swordsman"]},
                 {"JUMP": ["Go to the other edge of town, into the woods.", null, "loc_witch"]}
             ]
         }
+    ],
+    "loc_baker": [
+        {"SPRITES": ["WIZARD", "BAKER"]},
+        "You are in the BAKER's shop. Not many people are here; you don't know if that's due to your timing or the economy. You've never taken business classes because you are a WIZARD.",
+        {
+            "PROMPT": "BAKER: How can I help you?",
+            "OPTIONS": [
+                {"JUMP": ["WIZARD: Do you know who I am?", "!bread", "baker_intro"]},
+                {"JUMP": ["WIZARD: Will you teach me how to bake?", "!bread", "baker_learn"]},
+                {"JUMP": ["Actually, I'm leaving.", null, "loc_town"]}
+            ]
+        }
+    ],
+    "baker_intro": [
+        {"GET": "baker_introduced"},
+        "You notice that the BAKER looks surprised at your presence. Does he even know who you are?",
+        "WIZARD: Do you know who I am?",
+        "BAKER: I mean, with the hat and all, I kind of guessed that you're the WIZARD... from the tower? Nobody's seen you in a REALLY long time, so...",
+        "WIZARD: That's me.",
+        "BAKER: You sound upset! Do you have some dire news to deliver? Is the world in danger? Am I a prophecied hero??",
+        "WIZARD: Um... No.",
+        "BAKER: Oh.",
+        "WIZARD: Only ever giving people dire news is really exhausting, actually.",
+        "BAKER: Oh... Yeah, that makes sense, actually.",
+        {"JUMP": "loc_town"}
+    ],
+    "baker_learn": [
+        "WIZARD: Will you teach me how to bake?",
+        "BAKER: What??",
+        "WIZARD: Like... make bread? Or cake or whatever. That's what you do, right?",
+        "BAKER: What's in it for me?",
+        "WIZARD: Do I have anything you want?",
+        "BAKER: Magic???",
+        "WIZARD: Oh, yeah, I could teach you some spells, sure.",
+        "The BAKER agrees to train you in the ancient ways of his craft.",
+        "You've never dealt with a science so inexact before. It's difficult to understand, but you watch carefully.",
+        "(You're mostly not making bread yourself, you're helping around the kitchen while you observe. It's been a long time since you played the apprentice role.)",
+        "In turn, you teach the BAKER about dark and ancient magics that would corrupt his soul.",
+        "He decides that maybe magic isn't for him. The two of you have a bonding moment over it.",
+        {
+            "PROMPT": "You think... you could stay here.",
+            "OPTIONS": [
+                {"JUMP": ["Nah, baking isn't really my thing.", null, "baker_leave"]},
+                {"GAMEOVER": ["Yeah, I like it here.", null, "You stay in the baker's shop and learn more about baking. Over time, you build a life here, and you seldom have reason to go back to your tower, except to tell your new friend about your history. It's nice here, getting to know the townspeople, learning to talk to them. You're glad you stayed."]}
+            ]
+        }
+    ],
+    "baker_leave": [
+        "WIZARD: This has been nice, but I think baking isn't really my thing.",
+        "BAKER: Oh... That's okay. It's not for everyone.",
+        "BAKER: Hey, why don't you take the loaf of bread you helped make? As a parting gift. As thanks for the dark magic.",
+        {"GET": "bread"},
+        "WIZARD: You didn't even learn any dark magic, though.",
+        "BAKER: As thanks for curing me of my curiosity about dark magic.",
+        "WIZARD: Sure.",
+        "BAKER: Don't be a stranger!",
+        {"JUMP": "loc_baker"}
+    ],
+    "loc_swordsman": [
+        {"SPRITES": ["WIZARD", "SWORDSMAN"]},
+        "You are in the home of the SWORDSMAN. He watches you silently.",
+        {
+            "PROMPT": "You feel like you should say something.",
+            "OPTIONS": [
+                {"JUMP": ["WIZARD: Swords... am I right, my dude?", null, "sword_intro"]},
+                {"JUMP": ["WIZARD: Do you want some bread?", "bread", "sword_bread"]},
+                {"JUMP": ["WIZARD: Will you teach me swordfighting?", "!bread_given", "sword_no"]},
+                {"JUMP": ["WIZARD: Will you teach me swordfighting?", "bread_given", "sword_learn"]},
+                {"JUMP": ["Actually, I'm leaving.", null, "loc_town"]}
+            ]
+        }
+    ],
+    "sword_intro": [
+        {"GET": "sword_introduced"},
+        "WIZARD: Swords... am I right, my dude?",
+        "He looks at you for... a long time.",
+        "A REALLY long time.",
+        "It's starting to freak you out.",
+        "But then...",
+        "He looks at you for a little longer.",
+        "You're sweating.",
+        "He says, with a huge grin,",
+        "SWORDSMAN: Right on, my dude! Swords!",
+        "WIZARD: ...Oh, haha, yeah! Yeah! You were quiet so long, I thought I said something wrong.",
+        "He doesn't say anything else.",
+        "WIZARD: ...Right on...",
+        {"JUMP": "loc_swordsman"}
+    ],
+    "sword_bread": [
+        {"GET": "bread_given"},
+        {"LOSE": "bread"},
+        "WIZARD: Do you want some bread?",
+        "The SWORDSMAN takes the loaf of bread that you are holding out to him with your bare hands.",
+        "He bites into it. His eyes light up.",
+        "SWORDSMAN: Wow, this is... pretty okay!",
+        "WIZARD: Thanks, I helped make it.",
+        "SWORDSMAN: Oh, that explains it. Usually the BAKER makes better bread on his own.",
+        "WIZARD: Yeah... it's a really difficult job. It's impressive.",
+        "SWORDSMAN: Are you his apprentice now or something?",
+        "WIZARD: Nah... baking wasn't for me.",
+        "SWORDSMAN: Oh.",
+        "SWORDSMAN: Well, is there something else you want?",
+        {"JUMP": "loc_swordsman"}
+    ],
+    "sword_no": [
+        "WIZARD: Will you teach me swordfighting?",
+        "SWORDSMAN: Sorry, but I haven't had lunch yet.",
+        "The sun is well past the center of the sky.",
+        "WIZARD: Are you... planning to have lunch soon?",
+        "The SWORDSMAN doesn't say anything else.",
+        {"JUMP": "loc_swordsman"}
+    ],
+    "sword_learn": [
+        "WIZARD: Will you teach me swordfighting?",
+        "SWORDSMAN: After that sick gift of beautifully mediocre bread? Anything, my man.",
+        "WIZARD: R... Rad.",
+        "The swordsman spends the rest of the day training you in swordfighting.",
+        "It's mostly just holding stances for a really long time.",
+        "It's tiresome, but... satisfying, too.",
+        {
+            "PROMPT": "You could get better at this.",
+            "OPTIONS": [
+                {"JUMP": ["This isn't for me", null, "sword_leave"]},
+                {"GAMEOVER": ["Yeah, I'll stick around.", null, "You stay with the SWORDSMAN and hone your new craft. Over time, your frail, wizardly body gains mighty strength, and when the town is in danger a long time from now, you are able to defend it with your blade instead of your magic."]}
+            ]
+        }
+    ],
+    "sword_leave": [
+        "WIZARD: This isn't for me.",
+        "SWORDSMAN: Not everyone can handle a mighty blade.",
+        "WIZARD: Yeah, or even a flimsy one.",
+        "You wave your wooden practice sword.",
+        "SWORDSMAN: It's not my place to keep anyone who doesn't want to learn this craft.",
+        "SWORDSMAN: But I believe you have potential! Why don't you keep that blade?",
+        "SWORDSMAN: If the weight of it ever feels right in your hands, I'll be here.",
+        "WIZARD: Thank you for your wisdom.",
+        {"GET": "sword"},
+        {"JUMP": "loc_swordsman"}
+    ],
+    "loc_witch": [
+        {"SPRITES": ["WIZARD", "WITCH"]},
+        "You go to the very edge of town, where you know the WITCH resides.",
+        {
+            "PROMPT": "WITCH: You shouldn't be here... unless you've nowhere left to go.",
+            "OPTIONS": [
+                {"JUMP": ["WIZARD: Do you want some bread?", "bread", "witch_refuse"]},
+                {"JUMP": ["WIZARD: Do you want a wooden sword?", "sword", "witch_refuse"]},
+                {"GAMEOVER": ["A rival magic user! I'm going to shoot her with fire to show dominance!", null, "You whip out your wand to blast the witch, but she's faster. She throws a potion at you that burns your eyes, and soon, you black out. When you awaken, you realize you've failed your mission. You used magic, and so carelessly. Once a WIZARD, always a WIZARD."]},
+                {"JUMP": ["WIZARD: I AM out of places to go.", null, "witch_end"]}
+            ]
+        }
+    ],
+    "witch_refuse": [
+        "WITCH: What? No. Why would I want that??",
+        {"JUMP": "loc_witch"}
+    ],
+    "witch_end": [
+        "WITCH: And you are here why?",
+        "WIZARD: Well... you're a WITCH, right? If I can't turn myself into someone else... can't you?",
+        "WIZARD: That's the sort of thing that a WITCH does, isn't it?",
+        "WITCH: You fool!",
+        "WITCH: There is no shortcut to bettering yourself!",
+        "WITCH: I cannot help you.",
+        "WIZARD: Could you... teach me to be a WITCH, then?",
+        "WITCH: No. I work alone. And aren't you trying to avoid magic?",
+        "WIZARD: Not unless it's WIZARD magic.",
+        "WITCH: You are weird. My point stands.",
+        "WIZARD: So... I'm gonna be myself forever?",
+        "WITCH: Yeah.",
+        "WITCH: Take solace in the fact that, somewhere out there, there's another version of you. Many other versions, probably.",
+        "WIZARD: Yeah, I know about the multiverse. I've read the dark tomes of Wizard Strange.",
+        "WITCH: Yeah, so, maybe one of them got a better ending. Settled for what they had, instead of getting greedy.",
+        "WITCH: But you?",
+        {"GAMEOVER": "WITCH: You are cursed eternally to be yourself."}
     ]
 }

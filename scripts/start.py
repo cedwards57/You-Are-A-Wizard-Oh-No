@@ -6,7 +6,7 @@ class StartGame():
         self.root = root
         self.game_fn = game_fn
         self.end_fn = end_fn
-        self.root.title("START")
+        self.root.title("GAME START")
         self.root.resizable(FALSE, FALSE)
         self.root.geometry("200x100")
         self.mainframe = ttk.Frame(self.root, padding="3 3 12 12")

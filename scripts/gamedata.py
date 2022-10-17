@@ -13,6 +13,9 @@ class GameData():
     def add(self, item):
         self.items.add(item)
     
+    def remove(self, item):
+        self.items.remove(item)
+    
     def meets_requirement(self, item):
         if item is None:
             return True

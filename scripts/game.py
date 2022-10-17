@@ -7,14 +7,14 @@ import os
 class RenderEvent():
     def __init__(self, root, start_fn, end_fn):
         self.root = root
-        self.root.geometry("500x600")
-        self.root.title("WIZARD")
+        self.root.geometry("500x700")
+        self.root.title("You Are A Wizard (Oh No!)")
         self.start_fn = start_fn
         self.end_fn = end_fn
         self.data = GameData()
         self.event_key = "event1_1"
         self.i = 0
-        self.wrap=500
+        self.wrap=400
         project_root = os.path.dirname(os.path.dirname(__file__))
         self.content = json.load(open(f"{project_root}/src/content.json"))
 
@@ -93,6 +93,11 @@ class RenderEvent():
         elif list(line.keys())[0] == "GET":
             self.i += 1
             self.data.add(line["GET"].lower())
+            self.render_dialogue(self.event_key)
+        
+        elif list(line.keys())[0] == "LOSE":
+            self.i += 1
+            self.data.remove(line["LOSE"].lower())
             self.render_dialogue(self.event_key)
 
         elif list(line.keys())[0] == "SPRITES":

@@ -15,7 +15,7 @@ class GameOver():
         L.grid(column=1, row=1, columnspan=2, sticky=N)
         L.config(wrap=250)
         ttk.Button(self.mainframe, text="Restart", command=self.restart).grid(column=1, row=2, sticky=W  )
-        ttk.Button(self.mainframe, text="I'm done.", command=self.end).grid(column=2, row=2, sticky=E)
+        ttk.Button(self.mainframe, text="End", command=self.end).grid(column=2, row=2, sticky=E)
 
     def end(self, *args):
         self.root.destroy()
